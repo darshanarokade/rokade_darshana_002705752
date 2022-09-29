@@ -4,6 +4,8 @@
  */
 package assignment1;
 
+import java.util.Date;
+
 /**
  *
  * @author HP
@@ -12,20 +14,21 @@ package assignment1;
 public class employee {
     
     private String name;
-    private long empid;
+    private String empid;
     private int age;
     private String gender;
-    //private date startdate;
+    private Date startdate;
     private String level;
     private String teaminfo;
     private String positiontitle;
-    private String contactinfo;
+    private String phoneno;
+    private String email;
 
     public String getName() {
         return name;
     }
 
-    public long getEmpid() {
+    public String getEmpid() {
         return empid;
     }
 
@@ -37,10 +40,10 @@ public class employee {
         return gender;
     }
 
-    /*public date getStartdate() {
+    public Date getStartdate() {
         return startdate;
     
-    }*/
+    }
 
     public String getLevel() {
         return level;
@@ -54,15 +57,19 @@ public class employee {
         return positiontitle;
     }
 
-    public String getContactinfo() {
-        return contactinfo;
+    public String getPhoneno() {
+        return phoneno;
+    }
+    
+    public String getEmail() {
+        return email;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setEmpid(long empid) {
+    public void setEmpid(String empid) {
         this.empid = empid;
     }
 
@@ -74,9 +81,9 @@ public class employee {
         this.gender = gender;
     }
 
-    /*public void setStartdate(date startdate) {
+    public void setStartdate(Date startdate) {
         this.startdate = startdate;
-    }*/
+    }
 
     public void setLevel(String level) {
         this.level = level;
@@ -89,9 +96,13 @@ public class employee {
     public void setPositiontitle(String positiontitle) {
         this.positiontitle = positiontitle;
     }
-
-    public void setContactinfo(String contactinfo) {
-        this.contactinfo = contactinfo;
+    
+    public void setPhoneno(String phoneno) {
+        this.phoneno=phoneno;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
     }
     
          

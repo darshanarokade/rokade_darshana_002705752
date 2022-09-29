@@ -18,10 +18,13 @@ public class ViewJPanel extends javax.swing.JPanel {
     
     public ViewJPanel(employee emp) {
         initComponents();
-        
-        this.emp = emp;
+        this.emp= emp;
         
     }
+
+    /*ViewJPanel() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
