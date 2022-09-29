@@ -266,6 +266,9 @@
     <Component class="javax.swing.JTextField" name="txtpositiontitle">
     </Component>
     <Component class="javax.swing.JTextField" name="txtphoneno">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtphonenoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtemail">
     </Component>
@@ -290,6 +293,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Female"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnfemaleActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="btnmale">
       <Properties>

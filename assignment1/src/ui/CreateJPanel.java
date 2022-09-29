@@ -3,7 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package ui;
-import assignment1.employee;
+import assignment1.Employee;
+import javax.swing.JOptionPane;
+//import assignment1.EmpDetails.*;
+//import java.awt.event.KeyEvent;
+//import javax.swing.JRadioButton;
+//import java.util.regex.*;
+//import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -15,13 +22,14 @@ public class CreateJPanel extends javax.swing.JPanel {
      * Creates new form CreateJPanel
      
      */
-    employee emp;
+    Employee emp;
     
-    public CreateJPanel(employee emp) {
+    public CreateJPanel(Employee emp) {
         initComponents();
         this.emp = emp;
         
     }
+
 
     /*CreateJPanel() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -112,6 +120,12 @@ public class CreateJPanel extends javax.swing.JPanel {
             }
         });
 
+        txtphoneno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtphonenoActionPerformed(evt);
+            }
+        });
+
         btnphoto.setText("Upload");
 
         btnsave.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -124,6 +138,11 @@ public class CreateJPanel extends javax.swing.JPanel {
         });
 
         btnfemale.setText("Female");
+        btnfemale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnfemaleActionPerformed(evt);
+            }
+        });
 
         btnmale.setText("Male");
 
@@ -244,24 +263,69 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
         // TODO add your handling code here:
-        emp.setName(txtname.getText());
-        emp.setEmpid(txtempid.getText());
-        //emp.setAge(intage.getInteger);
-        emp.setGender(txtgender.getText());
-        //emp.setStartdate(txtstartdate.getDate());
-        emp.setLevel(txtlevel.getText());
-        emp.setTeaminfo(txtteaminfo.getText());
-        emp.setPositiontitle(txtpositiontitle.getText());
-        emp.setPhoneno(txtphoneno.getText());
-        emp.setEmail(txtemail.getText());
+        String name = txtname.getText();
+        String empid = txtempid.getText();
+        //Integer age = intage.getInteger();
+        String startdate = txtstartdate.getText();
+        String level = txtlevel.getText();
+        String positiontitle = txtpositiontitle.getText();
+        String phoneno = txtphoneno.getText();
+        String email = txtemail.getText();
         
+        Employee e = emp.addNewEmp();
         
+        e.setName(name);
+        e.setEmpid(empid);
+        //e.setAge(age);
+        e.setStartdate(startdate);
+        e.setLevel(level);
+        e.setPositiontitle(positiontitle);
+        e.setPhoneno(phoneno);
+        e.setEmail(email);
         
+        JOptionPane.showMessageDialog(this,"New Employee Added");
+        
+        txtname.setText("");
+        txtempid.setText("");
+        intage.setText("");
+        txtstartdate.setText("");
+        txtlevel.setText("");
+        txtpositiontitle.setText("");
+        txtphoneno.setText("");
+        txtemail.setText("");
+        
+ 
+        /*if(name.equals(" ") &&
+                age.equals(" ") &&
+                empid.equals(" ") &&
+                startdate.equals(" ") &&
+                level.equals("") &&
+                positiontitle.equals("")){
+            if (phoneno.equals("")) {
+                JOptionPane.showMessageDialog(null, "Mandatorty Field");
+            }
+        }*/
+            
+    
     }//GEN-LAST:event_btnsaveActionPerformed
 
     private void txtempidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtempidActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtempidActionPerformed
+
+    /*btnfemale= new JRadioButton((Icon) btnfemale);
+    btnmale= new JRadioButton(btnmale);
+    btnother= new JRadioButton(btnother);  */ 
+    
+    
+    private void btnfemaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfemaleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnfemaleActionPerformed
+
+    private void txtphonenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtphonenoActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_txtphonenoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -292,4 +356,5 @@ public class CreateJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtstartdate;
     private javax.swing.JTextField txtteaminfo;
     // End of variables declaration//GEN-END:variables
+
 }
