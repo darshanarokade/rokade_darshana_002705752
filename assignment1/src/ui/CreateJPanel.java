@@ -376,10 +376,10 @@ public class CreateJPanel extends javax.swing.JPanel {
     private void btnsaveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnsaveKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_btnsaveKeyReleased
-
+/*
     private void txtnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnameKeyReleased
         // TODO add your handling code here:
-        String PATTERN= "^[a-zA-Z0-9](0,30)[,.$";
+        String PATTERN= "[a-zA-Z]";
         var patt = Pattern.compile(PATTERN);
         Matcher match = patt.matcher(txtname.getText());
         if(match.matches()){
@@ -387,6 +387,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         }else
             txtname.setText(null);
     }//GEN-LAST:event_txtnameKeyReleased
+*/
 
     private void btnphotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnphotoMouseClicked
         // TODO add your handling code here:
