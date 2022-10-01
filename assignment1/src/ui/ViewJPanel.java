@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package ui;
+
 import java.awt.*;
 import assignment1.Employee;
 import assignment1.EmpDetails;
@@ -12,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
-
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -26,18 +27,17 @@ public class ViewJPanel extends javax.swing.JPanel {
     ;
     
     EmpDetails emp;
-    
+
     public ViewJPanel(EmpDetails emp) {
         initComponents();
-        this.emp= emp;
-       
+        this.emp = emp;
+
         populateTable();
     }
 
     /*ViewJPanel() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }*/
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,7 +65,8 @@ public class ViewJPanel extends javax.swing.JPanel {
         txtname1 = new javax.swing.JTextField();
         txtdob1 = new javax.swing.JTextField();
         lblphoto1 = new javax.swing.JLabel();
-        btnsearch = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        txtsearch = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 153));
         setBorder(new javax.swing.border.MatteBorder(null));
@@ -206,57 +207,75 @@ public class ViewJPanel extends javax.swing.JPanel {
         );
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, 376));
+        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 410, -1, -1));
 
-        btnsearch.setFont(new java.awt.Font("Comic Sans MS", 3, 14)); // NOI18N
-        btnsearch.setText("Search Employee");
-        add(btnsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 400, 160, -1));
+        txtsearch.setFont(new java.awt.Font("Comic Sans MS", 3, 14)); // NOI18N
+        txtsearch.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtsearch.setText("Search...");
+        txtsearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtsearchActionPerformed(evt);
+            }
+        });
+        txtsearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtsearchKeyReleased(evt);
+            }
+        });
+        add(txtsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 400, 160, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_btnupdateActionPerformed
 
     private void btndeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeleteActionPerformed
         // TODO add your handling code here:
         System.out.println("Delete button pressed");
         int selectedRowIndex = tblemp.getSelectedRow();
-        
-        if (selectedRowIndex<0){
+
+        if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please selct a row to Delete");
             return;
         }
-        
+
         DefaultTableModel model = (DefaultTableModel) tblemp.getModel();
-        Employee selectedEmp = (Employee) model.getValueAt(selectedRowIndex,0);
-        
+        Employee selectedEmp = (Employee) model.getValueAt(selectedRowIndex, 0);
+
         emp.deleteEmp(selectedEmp);
-        
+
         JOptionPane.showMessageDialog(this, "Employee deleted");
-        
+
         populateTable();
-        
+
     }//GEN-LAST:event_btndeleteActionPerformed
 
+    /*
+    public void filter(String query){
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(tblemp);
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(emp)
+    }
+     */
     private void btnviewempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnviewempActionPerformed
         // TODO add your handling code here:
-        
+
         int selectedRowIndex = tblemp.getSelectedRow();
-        
-        if (selectedRowIndex<0){
+
+        if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please selct a row to View Details");
             return;
         }
-        
+
         DefaultTableModel model = (DefaultTableModel) tblemp.getModel();
-        Employee selectedEmp = (Employee) model.getValueAt(selectedRowIndex,0);
-        lblphoto1 = new JLabel(new ImageIcon(selectedEmp.getPhoto()));
+        Employee selectedEmp = (Employee) model.getValueAt(selectedRowIndex, 0);
+        //lblphoto1 = new JLabel(new ImageIcon(selectedEmp.getPhoto()));
         jPanel1.add(lblphoto1);
-        
+
         // to Display the data in Panel1
         txtname1.setText(selectedEmp.getName());
         txtempid1.setText(selectedEmp.getEmpid());
-        txtdob1.setText(String.valueOf(selectedEmp.getDob()));
+        //txtdob1.setText(String.valueOf(selectedEmp.getDate()));
         txtgender1.setText(String.valueOf(selectedEmp.getGender()));
         txtstartdate1.setText(String.valueOf(selectedEmp.getStartdate()));
         txtlevel1.setText(selectedEmp.getLevel());
@@ -264,7 +283,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         txtpositiontitle1.setText(selectedEmp.getPositiontitle());
         txtphoneno1.setText(selectedEmp.getPhoneno());
         txtemail1.setText(selectedEmp.getEmail());
-        
+
     }//GEN-LAST:event_btnviewempActionPerformed
 
     private void txtname1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtname1ActionPerformed
@@ -275,12 +294,22 @@ public class ViewJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtempid1ActionPerformed
 
+    private void txtsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtsearchActionPerformed
+
+    private void txtsearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsearchKeyReleased
+        // TODO add your handling code here:
+        //String query = filterTxt.getText();
+        //filter(query);
+    }//GEN-LAST:event_txtsearchKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnsearch;
     private javax.swing.JButton btnviewemp;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblphoto1;
     private javax.swing.JTable tblemp;
     private javax.swing.JTextField txtdob1;
@@ -291,6 +320,7 @@ public class ViewJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtname1;
     private javax.swing.JTextField txtphoneno1;
     private javax.swing.JTextField txtpositiontitle1;
+    private javax.swing.JTextField txtsearch;
     private javax.swing.JTextField txtstartdate1;
     private javax.swing.JTextField txtteaminfo1;
     // End of variables declaration//GEN-END:variables
@@ -299,26 +329,22 @@ public class ViewJPanel extends javax.swing.JPanel {
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         DefaultTableModel model = (DefaultTableModel) tblemp.getModel();
         model.setRowCount(0);
-        
-        for (Employee e : emp.getEmp()){
+
+        for (Employee e : emp.getEmp()) {
             Object[] row = new Object[11];
-            row[0]=e;
-            row[1]=e.getEmpid();
-            row[2]=e.getDob();
-            row[3]=e.getGender();
-            row[4]=e.getStartdate();
-            row[5]=e.getLevel();
-            row[6]=e.getTeaminfo();
-            row[7]=e.getPositiontitle();
-            row[8]=e.getPhoneno();
-            row[9]=e.getEmail();
-            
+            row[0] = e;
+            row[1] = e.getEmpid();
+            row[2] = e.getDob();
+            row[3] = e.getGender();
+            row[4] = e.getStartdate();
+            row[5] = e.getLevel();
+            row[6] = e.getTeaminfo();
+            row[7] = e.getPositiontitle();
+            row[8] = e.getPhoneno();
+            row[9] = e.getEmail();
+
             model.addRow(row);
-            
-        
-          
+
         }
     }
 }
-    
-

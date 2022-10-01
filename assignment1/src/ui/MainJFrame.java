@@ -4,8 +4,7 @@
  */
 package ui;
 import assignment1.EmpDetails;
-import assignment1.Employee;
-import javax.swing.*;
+
 
 
 /**
@@ -87,7 +86,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(btncreate)
                 .addGap(39, 39, 39)
                 .addComponent(btnview)
-                .addContainerGap(402, Short.MAX_VALUE))
+                .addContainerGap(795, Short.MAX_VALUE))
         );
 
         splitpane.setLeftComponent(controlpanel);
@@ -95,6 +94,7 @@ public class MainJFrame extends javax.swing.JFrame {
         workarea.setBackground(new java.awt.Color(255, 255, 204));
         workarea.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         workarea.setFont(new java.awt.Font("Gabriola", 1, 14)); // NOI18N
+        workarea.setMinimumSize(new java.awt.Dimension(1000, 1000));
         workarea.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Georgia", 3, 24)); // NOI18N
@@ -115,12 +115,12 @@ public class MainJFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(splitpane, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
+                .addComponent(splitpane, javax.swing.GroupLayout.DEFAULT_SIZE, 1236, Short.MAX_VALUE)
                 .addGap(853, 853, 853))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(splitpane)
+            .addComponent(splitpane, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
 
         pack();
@@ -152,6 +152,10 @@ public class MainJFrame extends javax.swing.JFrame {
    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
+        
+        //JPanel cp = new JPanel();
+        //cp.setSize(1500,1500);
+        
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -177,6 +181,7 @@ public class MainJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new MainJFrame().setVisible(true);
+            
         });
     }
 
