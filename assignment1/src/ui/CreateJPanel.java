@@ -82,10 +82,10 @@ public class CreateJPanel extends javax.swing.JPanel {
         btnother = new javax.swing.JRadioButton();
         choosestartdate = new com.toedter.calendar.JDateChooser();
         choosedob = new com.toedter.calendar.JDateChooser();
-        txtname = new javax.swing.JTextField();
         lblphotoselected = new javax.swing.JLabel();
         txtlevel = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        txtname = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 153, 102));
         setMinimumSize(new java.awt.Dimension(1095, 608));
@@ -216,18 +216,6 @@ public class CreateJPanel extends javax.swing.JPanel {
         add(choosestartdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 255, 300, -1));
         add(choosedob, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 174, 300, -1));
 
-        txtname.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnameActionPerformed(evt);
-            }
-        });
-        txtname.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtnameKeyReleased(evt);
-            }
-        });
-        add(txtname, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 92, 300, -1));
-
         lblphotoselected.setBackground(new java.awt.Color(255, 153, 102));
         lblphotoselected.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblphotoselected.setToolTipText("");
@@ -238,6 +226,7 @@ public class CreateJPanel extends javax.swing.JPanel {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/add-user (1).png"))); // NOI18N
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 200, 190, 170));
+        add(txtname, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 300, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
@@ -366,9 +355,6 @@ public class CreateJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnphotoActionPerformed
 
-    private void txtnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtnameActionPerformed
     private void btnsaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnsaveKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnsaveKeyPressed
@@ -376,18 +362,7 @@ public class CreateJPanel extends javax.swing.JPanel {
     private void btnsaveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnsaveKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_btnsaveKeyReleased
-/*
-    private void txtnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnameKeyReleased
-        // TODO add your handling code here:
-        String PATTERN= "[a-zA-Z]";
-        var patt = Pattern.compile(PATTERN);
-        Matcher match = patt.matcher(txtname.getText());
-        if(match.matches()){
-            txtname.setText("Invalid Name");
-        }else
-            txtname.setText(null);
-    }//GEN-LAST:event_txtnameKeyReleased
-*/
+/**/
 
     private void btnphotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnphotoMouseClicked
         // TODO add your handling code here:
