@@ -3,21 +3,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package ui;
-import javax.swing.JTextField;
+import static javax.swing.JFileChooser.APPROVE_OPTION;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.filechooser.FileFilter;
 import assignment1.EmpDetails;
 import assignment1.Employee;
-import java.io.File;
+import javax.swing.JTextField;
 import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileFilter;
-import java.util.Date;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import java.awt.event.KeyEvent;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JRadioButton;
 import javax.swing.AbstractButton;
-import static javax.swing.JFileChooser.APPROVE_OPTION;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+import java.io.File;
+import java.util.Date;
+
 
 /**
  *
@@ -68,7 +72,6 @@ public class CreateJPanel extends javax.swing.JPanel {
         javax.swing.JLabel lblemail = new javax.swing.JLabel();
         javax.swing.JLabel lblphoto = new javax.swing.JLabel();
         txtempid = new javax.swing.JTextField();
-        txtlevel = new javax.swing.JTextField();
         txtteaminfo = new javax.swing.JTextField();
         txtpositiontitle = new javax.swing.JTextField();
         txtphoneno = new javax.swing.JTextField();
@@ -81,15 +84,18 @@ public class CreateJPanel extends javax.swing.JPanel {
         choosedob = new com.toedter.calendar.JDateChooser();
         txtname = new javax.swing.JTextField();
         lblphotoselected = new javax.swing.JLabel();
+        txtlevel = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(204, 204, 255));
+        setBackground(new java.awt.Color(255, 153, 102));
         setMinimumSize(new java.awt.Dimension(1095, 608));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblcreate.setFont(new java.awt.Font("Gabriola", 1, 36)); // NOI18N
         lblcreate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblcreate.setText("Create New Employee");
-        add(lblcreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 20, 1089, -1));
+        lblcreate.setText(" Create  New  Employee");
+        lblcreate.setToolTipText("");
+        add(lblcreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 890, 60));
 
         btnsave.setBackground(new java.awt.Color(0, 0, 0));
         btnsave.setFont(new java.awt.Font("Segoe UI Variable", 2, 18)); // NOI18N
@@ -101,7 +107,15 @@ public class CreateJPanel extends javax.swing.JPanel {
                 btnsaveActionPerformed(evt);
             }
         });
-        add(btnsave, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 564, 89, -1));
+        btnsave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnsaveKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                btnsaveKeyReleased(evt);
+            }
+        });
+        add(btnsave, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 390, 89, -1));
 
         lblname.setFont(new java.awt.Font("Gabriola", 1, 24)); // NOI18N
         lblname.setText("Name:");
@@ -137,15 +151,15 @@ public class CreateJPanel extends javax.swing.JPanel {
 
         lblphoneno.setFont(new java.awt.Font("Gabriola", 1, 24)); // NOI18N
         lblphoneno.setText("Phone No:");
-        add(lblphoneno, new org.netbeans.lib.awtextra.AbsoluteConstraints(86, 413, -1, -1));
+        add(lblphoneno, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 420, -1, 40));
 
         lblemail.setFont(new java.awt.Font("Gabriola", 1, 24)); // NOI18N
         lblemail.setText("Email:");
-        add(lblemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(86, 453, 100, -1));
+        add(lblemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 460, 100, -1));
 
         lblphoto.setFont(new java.awt.Font("Gabriola", 1, 24)); // NOI18N
         lblphoto.setText("Photo:");
-        add(lblphoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(86, 496, 100, -1));
+        add(lblphoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 500, 100, -1));
 
         txtempid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,7 +167,6 @@ public class CreateJPanel extends javax.swing.JPanel {
             }
         });
         add(txtempid, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 132, 300, -1));
-        add(txtlevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 295, 300, -1));
         add(txtteaminfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 335, 300, -1));
         add(txtpositiontitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 375, 300, -1));
 
@@ -163,18 +176,23 @@ public class CreateJPanel extends javax.swing.JPanel {
             }
         });
         add(txtphoneno, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 415, 300, -1));
-        add(txtemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 455, 300, -1));
+        add(txtemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 460, 300, -1));
 
         btnphoto.setBackground(new java.awt.Color(0, 0, 0));
         btnphoto.setFont(new java.awt.Font("Segoe UI Variable", 2, 18)); // NOI18N
         btnphoto.setForeground(new java.awt.Color(255, 255, 255));
         btnphoto.setText("Browse");
+        btnphoto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnphotoMouseClicked(evt);
+            }
+        });
         btnphoto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnphotoActionPerformed(evt);
             }
         });
-        add(btnphoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 495, 100, -1));
+        add(btnphoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 500, 100, -1));
 
         gendergroup.add(btnfemale);
         btnfemale.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
@@ -203,20 +221,28 @@ public class CreateJPanel extends javax.swing.JPanel {
                 txtnameActionPerformed(evt);
             }
         });
+        txtname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtnameKeyReleased(evt);
+            }
+        });
         add(txtname, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 92, 300, -1));
 
-        lblphotoselected.setBackground(new java.awt.Color(204, 204, 255));
+        lblphotoselected.setBackground(new java.awt.Color(255, 153, 102));
+        lblphotoselected.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblphotoselected.setToolTipText("");
+        lblphotoselected.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         lblphotoselected.setOpaque(true);
-        add(lblphotoselected, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 495, 170, 23));
+        add(lblphotoselected, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 510, 190, 20));
+        add(txtlevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 295, 300, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/add-user (1).png"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 200, 190, 170));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
         // TODO add your handling code here:
         
-        
-        
-
         String name = txtname.getText();
         String empid = txtempid.getText();
         Date dob = choosedob.getDate();
@@ -236,10 +262,37 @@ public class CreateJPanel extends javax.swing.JPanel {
         group.add(btnother);
         
         Date startdate = choosestartdate.getDate();
-        String level = txtlevel.getText();
+        String level= txtlevel.getText();
         String positiontitle = txtpositiontitle.getText();
         String phoneno = txtphoneno.getText();
+        
+        /*int length = phoneno.length();
+        char c;
+        c = evt.getKeyChar();
+        
+        if(evt.getKeyChar()>='0' || evt.getKeyChar()<='9')
+        {
+            if (length<10){
+                txtphoneno.setEditable(true);
+            }
+            else{
+                txtphoneno.setEditable(false);
+            }
+        }else
+        {
+            if(evt.getExtendedKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode() == KeyEvent.VK_DELETE){
+                txtphoneno.setEditable(true);
+            }else{
+                txtphoneno.setEditable(false);
+            }
+                
+        }*/
+
+        
         String email = txtemail.getText();
+        // Refer txtnameKeyReleased method for validation
+        
+        
         String photo = lblphotoselected.getText();
 
         if (name.equals("")
@@ -280,6 +333,7 @@ public class CreateJPanel extends javax.swing.JPanel {
             txtphoneno.setText("");
             txtemail.setText("");
             txtteaminfo.setText("");
+            lblphotoselected.setText("");
             
         }
     }//GEN-LAST:event_btnsaveActionPerformed
@@ -309,11 +363,34 @@ public class CreateJPanel extends javax.swing.JPanel {
             lblphotoselected.setText(selectedImagePath);
         }
         
+        
     }//GEN-LAST:event_btnphotoActionPerformed
 
     private void txtnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnameActionPerformed
+    private void btnsaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnsaveKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnsaveKeyPressed
+
+    private void btnsaveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnsaveKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnsaveKeyReleased
+
+    private void txtnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnameKeyReleased
+        // TODO add your handling code here:
+        String PATTERN= "^[a-zA-Z0-9](0,30)[,.$";
+        var patt = Pattern.compile(PATTERN);
+        Matcher match = patt.matcher(txtname.getText());
+        if(match.matches()){
+            txtname.setText("Invalid Name");
+        }else
+            txtname.setText(null);
+    }//GEN-LAST:event_txtnameKeyReleased
+
+    private void btnphotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnphotoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnphotoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -325,6 +402,7 @@ public class CreateJPanel extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser choosedob;
     private com.toedter.calendar.JDateChooser choosestartdate;
     private javax.swing.ButtonGroup gendergroup;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblcreate;
     private javax.swing.JLabel lblphotoselected;
     private javax.swing.JTextField txtemail;
