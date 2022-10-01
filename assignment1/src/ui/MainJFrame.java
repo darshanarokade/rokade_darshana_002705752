@@ -3,8 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ui;
-//import assignment1.Employee;
-//import assignment1.EmpDetails;
+import assignment1.EmpDetails;
 import assignment1.Employee;
 import javax.swing.*;
 
@@ -19,16 +18,16 @@ public class MainJFrame extends javax.swing.JFrame {
      * Creates new form MainJFrame
      */
     
-    Employee emp;
+    EmpDetails emp;
     
     public MainJFrame() {
         initComponents();
         
-        this.emp = new Employee();
-        
+        emp = new EmpDetails();
+ 
+      
     }
    
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -37,11 +36,23 @@ public class MainJFrame extends javax.swing.JFrame {
         controlpanel = new javax.swing.JPanel();
         btncreate = new javax.swing.JButton();
         btnview = new javax.swing.JButton();
-        workarea = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        javax.swing.JPanel workarea = new javax.swing.JPanel();
+        javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1000, 1500));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
+        controlpanel.setBackground(new java.awt.Color(255, 255, 204));
+        controlpanel.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+
+        btncreate.setBackground(new java.awt.Color(204, 255, 204));
+        btncreate.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         btncreate.setText("Create New Employee");
         btncreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,6 +60,8 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        btnview.setBackground(new java.awt.Color(204, 255, 204));
+        btnview.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         btnview.setText("View Employee");
         btnview.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,33 +87,25 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(btncreate)
                 .addGap(39, 39, 39)
                 .addComponent(btnview)
-                .addContainerGap(231, Short.MAX_VALUE))
+                .addContainerGap(402, Short.MAX_VALUE))
         );
 
         splitpane.setLeftComponent(controlpanel);
 
-        workarea.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        workarea.setBackground(new java.awt.Color(255, 255, 204));
+        workarea.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        workarea.setFont(new java.awt.Font("Gabriola", 1, 14)); // NOI18N
+        workarea.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setFont(new java.awt.Font("Georgia", 3, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("Human Resources Portal");
+        workarea.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 340, 100));
 
-        javax.swing.GroupLayout workareaLayout = new javax.swing.GroupLayout(workarea);
-        workarea.setLayout(workareaLayout);
-        workareaLayout.setHorizontalGroup(
-            workareaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(workareaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(257, Short.MAX_VALUE))
-        );
-        workareaLayout.setVerticalGroup(
-            workareaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(workareaLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jLabel1)
-                .addContainerGap(374, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Personal-Crowd-Silhouettes-Human-Group-Of-People-2045498.jpg"))); // NOI18N
+        jLabel2.setToolTipText("");
+        jLabel2.setMaximumSize(new java.awt.Dimension(1500, 1500));
+        workarea.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 500, 520));
 
         splitpane.setRightComponent(workarea);
 
@@ -108,7 +113,10 @@ public class MainJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(splitpane)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(splitpane, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
+                .addGap(853, 853, 853))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,15 +136,20 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnviewActionPerformed
         // TODO add your handling code here:
-        
         ViewJPanel viewPanel = new ViewJPanel(emp);
         splitpane.setRightComponent(viewPanel);
         
     }//GEN-LAST:event_btnviewActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
+    
+   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -171,16 +184,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btncreate;
     private javax.swing.JButton btnview;
     private javax.swing.JPanel controlpanel;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JSplitPane splitpane;
-    private javax.swing.JPanel workarea;
     // End of variables declaration//GEN-END:variables
 
-    private static class EmployeeDetails {
-
-        public EmployeeDetails() {
-        }
-    }
-
-    
 }
