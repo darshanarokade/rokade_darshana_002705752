@@ -3,8 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package ui;
+import java.awt.*;
 import assignment1.Employee;
 import assignment1.EmpDetails;
+import javax.swing.GrayFilter;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -17,15 +23,16 @@ public class ViewJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ViewJPanel
      */
-    Employee emp;
+    ;
     
-    public ViewJPanel(Employee emp) {
+    EmpDetails emp;
+    
+    public ViewJPanel(EmpDetails emp) {
         initComponents();
         this.emp= emp;
-        
+       
         populateTable();
     }
-
 
     /*ViewJPanel() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -40,106 +47,278 @@ public class ViewJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblcreate = new javax.swing.JLabel();
+        javax.swing.JLabel lblcreate = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblemp = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jSplitPane1 = new javax.swing.JSplitPane();
+        javax.swing.JButton btnupdate = new javax.swing.JButton();
+        javax.swing.JButton btndelete = new javax.swing.JButton();
+        btnviewemp = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        txtemail1 = new javax.swing.JTextField();
+        txtgender1 = new javax.swing.JTextField();
+        txtempid1 = new javax.swing.JTextField();
+        txtstartdate1 = new javax.swing.JTextField();
+        txtlevel1 = new javax.swing.JTextField();
+        txtteaminfo1 = new javax.swing.JTextField();
+        txtpositiontitle1 = new javax.swing.JTextField();
+        txtphoneno1 = new javax.swing.JTextField();
+        txtname1 = new javax.swing.JTextField();
+        txtdob1 = new javax.swing.JTextField();
+        lblphoto1 = new javax.swing.JLabel();
+        btnsearch = new javax.swing.JButton();
 
-        lblcreate.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        setBackground(new java.awt.Color(255, 255, 153));
+        setBorder(new javax.swing.border.MatteBorder(null));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblcreate.setFont(new java.awt.Font("Georgia", 3, 24)); // NOI18N
         lblcreate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblcreate.setText("View Employee");
+        lblcreate.setText("List of Employees");
+        add(lblcreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 21, 1020, -1));
 
+        tblemp.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.borderColor"));
+        tblemp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tblemp.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         tblemp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Name", "Employee ID", "Age", "Gender", "Start Date", "Level", "Team Info", "Position Title", "Phone no", "Email"
+                "Name", "Employee ID", "Date Of Birth", "Gender", "Start Date", "Level", "Team Info", "Position Title", "Phone no", "Email"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblemp.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblemp);
+        if (tblemp.getColumnModel().getColumnCount() > 0) {
+            tblemp.getColumnModel().getColumn(0).setResizable(false);
+        }
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setText("Update");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 64, 1000, 178));
+
+        btnupdate.setFont(new java.awt.Font("Comic Sans MS", 3, 14)); // NOI18N
+        btnupdate.setText("Update Employee");
+        btnupdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnupdateActionPerformed(evt);
+            }
+        });
+        add(btnupdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(805, 280, 160, -1));
+
+        btndelete.setFont(new java.awt.Font("Comic Sans MS", 3, 14)); // NOI18N
+        btndelete.setText("Delete Employee");
+        btndelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndeleteActionPerformed(evt);
+            }
+        });
+        add(btndelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(805, 320, 160, -1));
+
+        btnviewemp.setFont(new java.awt.Font("Comic Sans MS", 3, 14)); // NOI18N
+        btnviewemp.setText("View Employee");
+        btnviewemp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnviewempActionPerformed(evt);
+            }
+        });
+        add(btnviewemp, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 360, 160, -1));
+
+        jPanel1.setBackground(new java.awt.Color(255, 204, 255));
+        jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
+
+        txtempid1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtempid1ActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setText("Delete");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        txtname1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                txtname1ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1013, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(lblcreate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1042, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(51, 51, 51)
-                .addComponent(jButton2)
-                .addGap(168, 168, 168))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1020, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        lblphoto1.setText("jLabel1");
+        lblphoto1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(104, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtpositiontitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtname1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblphoto1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtphoneno1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(101, 101, 101)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtemail1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                                .addComponent(txtdob1)
+                                .addComponent(txtgender1))
+                            .addComponent(txtstartdate1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtlevel1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtteaminfo1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtempid1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(254, 254, 254))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(lblcreate)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addComponent(txtempid1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtdob1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtgender1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblphoto1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtname1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtstartdate1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtphoneno1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtlevel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtteaminfo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtpositiontitle1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(109, 109, 109)
+                .addComponent(txtemail1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
         );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, 376));
+
+        btnsearch.setFont(new java.awt.Font("Comic Sans MS", 3, 14)); // NOI18N
+        btnsearch.setText("Search Employee");
+        add(btnsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 400, 160, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_btnupdateActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btndeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeleteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        System.out.println("Delete button pressed");
+        int selectedRowIndex = tblemp.getSelectedRow();
+        
+        if (selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please selct a row to Delete");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) tblemp.getModel();
+        Employee selectedEmp = (Employee) model.getValueAt(selectedRowIndex,0);
+        
+        emp.deleteEmp(selectedEmp);
+        
+        JOptionPane.showMessageDialog(this, "Employee deleted");
+        
+        populateTable();
+        
+    }//GEN-LAST:event_btndeleteActionPerformed
+
+    private void btnviewempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnviewempActionPerformed
+        // TODO add your handling code here:
+        
+        int selectedRowIndex = tblemp.getSelectedRow();
+        
+        if (selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please selct a row to View Details");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) tblemp.getModel();
+        Employee selectedEmp = (Employee) model.getValueAt(selectedRowIndex,0);
+        lblphoto1 = new JLabel(new ImageIcon(selectedEmp.getPhoto()));
+        jPanel1.add(lblphoto1);
+        
+        // to Display the data in Panel1
+        txtname1.setText(selectedEmp.getName());
+        txtempid1.setText(selectedEmp.getEmpid());
+        txtdob1.setText(String.valueOf(selectedEmp.getDob()));
+        txtgender1.setText(String.valueOf(selectedEmp.getGender()));
+        txtstartdate1.setText(String.valueOf(selectedEmp.getStartdate()));
+        txtlevel1.setText(selectedEmp.getLevel());
+        txtteaminfo1.setText(selectedEmp.getTeaminfo());
+        txtpositiontitle1.setText(selectedEmp.getPositiontitle());
+        txtphoneno1.setText(selectedEmp.getPhoneno());
+        txtemail1.setText(selectedEmp.getEmail());
+        
+    }//GEN-LAST:event_btnviewempActionPerformed
+
+    private void txtname1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtname1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtname1ActionPerformed
+
+    private void txtempid1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtempid1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtempid1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnsearch;
+    private javax.swing.JButton btnviewemp;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JLabel lblcreate;
+    private javax.swing.JLabel lblphoto1;
     private javax.swing.JTable tblemp;
+    private javax.swing.JTextField txtdob1;
+    private javax.swing.JTextField txtemail1;
+    private javax.swing.JTextField txtempid1;
+    private javax.swing.JTextField txtgender1;
+    private javax.swing.JTextField txtlevel1;
+    private javax.swing.JTextField txtname1;
+    private javax.swing.JTextField txtphoneno1;
+    private javax.swing.JTextField txtpositiontitle1;
+    private javax.swing.JTextField txtstartdate1;
+    private javax.swing.JTextField txtteaminfo1;
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         DefaultTableModel model = (DefaultTableModel) tblemp.getModel();
+        model.setRowCount(0);
         
+        for (Employee e : emp.getEmp()){
+            Object[] row = new Object[11];
+            row[0]=e;
+            row[1]=e.getEmpid();
+            row[2]=e.getDob();
+            row[3]=e.getGender();
+            row[4]=e.getStartdate();
+            row[5]=e.getLevel();
+            row[6]=e.getTeaminfo();
+            row[7]=e.getPositiontitle();
+            row[8]=e.getPhoneno();
+            row[9]=e.getEmail();
+            
+            model.addRow(row);
+            
+        
+          
+        }
     }
 }
+    
+
