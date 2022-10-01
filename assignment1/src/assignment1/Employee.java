@@ -11,11 +11,11 @@ import java.util.Date;
  * @author HP
  */
 
-public class employee {
+public class Employee {
     
     private String name;
     private String empid;
-    private int age;
+    private Date dob;
     private String gender;
     private Date startdate;
     private String level;
@@ -23,6 +23,8 @@ public class employee {
     private String positiontitle;
     private String phoneno;
     private String email;
+    private String photo;
+    
 
     public String getName() {
         return name;
@@ -32,8 +34,8 @@ public class employee {
         return empid;
     }
 
-    public int getAge() {
-        return age;
+    public Date getDob() {
+        return dob;
     }
 
     public String getGender() {
@@ -64,7 +66,15 @@ public class employee {
     public String getEmail() {
         return email;
     }
+    
+    public String getPHoto(){
+        return photo;
+    }
 
+    public void setPhoto(String photo){
+        this.photo=photo;
+    }
+    
     public void setName(String name) {
         this.name = name;
     }
@@ -73,8 +83,8 @@ public class employee {
         this.empid = empid;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setDob(Date dob) {
+        this.dob = dob;
     }
 
     public void setGender(String gender) {
@@ -104,6 +114,10 @@ public class employee {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-         
+
+    public Object getDate() {
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    return null;
+    }
+     
 }
