@@ -9,7 +9,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.filechooser.FileFilter;
 import assignment1.EmpDetails;
 import assignment1.Employee;
-import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
 import javax.swing.JTextField;
 import javax.swing.JFileChooser;
 import java.awt.event.KeyEvent;
@@ -17,12 +18,14 @@ import java.awt.event.KeyListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JRadioButton;
 import javax.swing.AbstractButton;
 import java.io.File;
 import java.util.Date;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -57,7 +60,6 @@ public class CreateJPanel extends javax.swing.JPanel {
 
         gendergroup = new javax.swing.ButtonGroup();
         lblcreate = new javax.swing.JLabel();
-        btnsave = new javax.swing.JButton();
         javax.swing.JLabel lblname = new javax.swing.JLabel();
         javax.swing.JLabel lblempid = new javax.swing.JLabel();
         javax.swing.JLabel lbldob = new javax.swing.JLabel();
@@ -70,20 +72,21 @@ public class CreateJPanel extends javax.swing.JPanel {
         javax.swing.JLabel lblemail = new javax.swing.JLabel();
         javax.swing.JLabel lblphoto = new javax.swing.JLabel();
         txtempid = new javax.swing.JTextField();
-        txtteaminfo = new javax.swing.JTextField();
-        txtpositiontitle = new javax.swing.JTextField();
-        txtphoneno = new javax.swing.JTextField();
-        txtemail = new javax.swing.JTextField();
-        btnphoto = new javax.swing.JButton();
         btnfemale = new javax.swing.JRadioButton();
         btnmale = new javax.swing.JRadioButton();
         btnother = new javax.swing.JRadioButton();
         choosestartdate = new com.toedter.calendar.JDateChooser();
         choosedob = new com.toedter.calendar.JDateChooser();
-        lblphotoselected = new javax.swing.JLabel();
-        txtlevel = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        txtemail = new javax.swing.JTextField();
+        btnphoto = new javax.swing.JButton();
+        btnsave = new javax.swing.JButton();
         txtname = new javax.swing.JTextField();
+        txtlevel = new javax.swing.JTextField();
+        txtteaminfo = new javax.swing.JTextField();
+        txtpositiontitle = new javax.swing.JTextField();
+        txtphoneno = new javax.swing.JTextField();
+        lblphotoselected = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 153, 102));
         setMinimumSize(new java.awt.Dimension(1095, 608));
@@ -94,26 +97,6 @@ public class CreateJPanel extends javax.swing.JPanel {
         lblcreate.setText(" Create  New  Employee");
         lblcreate.setToolTipText("");
         add(lblcreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 890, 60));
-
-        btnsave.setBackground(new java.awt.Color(0, 0, 0));
-        btnsave.setFont(new java.awt.Font("Segoe UI Variable", 2, 18)); // NOI18N
-        btnsave.setForeground(new java.awt.Color(255, 255, 255));
-        btnsave.setText("SAVE");
-        btnsave.setAlignmentY(0.0F);
-        btnsave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnsaveActionPerformed(evt);
-            }
-        });
-        btnsave.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnsaveKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                btnsaveKeyReleased(evt);
-            }
-        });
-        add(btnsave, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 390, 89, -1));
 
         lblname.setFont(new java.awt.Font("Gabriola", 1, 24)); // NOI18N
         lblname.setText("Name:");
@@ -165,43 +148,6 @@ public class CreateJPanel extends javax.swing.JPanel {
             }
         });
         add(txtempid, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 132, 300, -1));
-        add(txtteaminfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 335, 300, -1));
-        add(txtpositiontitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 375, 300, -1));
-
-        txtphoneno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtphonenoActionPerformed(evt);
-            }
-        });
-        txtphoneno.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtphonenoKeyReleased(evt);
-            }
-        });
-        add(txtphoneno, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 415, 300, -1));
-
-        txtemail.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtemailKeyReleased(evt);
-            }
-        });
-        add(txtemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 460, 300, -1));
-
-        btnphoto.setBackground(new java.awt.Color(0, 0, 0));
-        btnphoto.setFont(new java.awt.Font("Segoe UI Variable", 2, 18)); // NOI18N
-        btnphoto.setForeground(new java.awt.Color(255, 255, 255));
-        btnphoto.setText("Browse");
-        btnphoto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnphotoMouseClicked(evt);
-            }
-        });
-        btnphoto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnphotoActionPerformed(evt);
-            }
-        });
-        add(btnphoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 500, 100, -1));
 
         gendergroup.add(btnfemale);
         btnfemale.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
@@ -225,22 +171,65 @@ public class CreateJPanel extends javax.swing.JPanel {
         add(choosestartdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 255, 300, -1));
         add(choosedob, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 174, 300, -1));
 
-        lblphotoselected.setBackground(new java.awt.Color(255, 153, 102));
-        lblphotoselected.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblphotoselected.setToolTipText("");
-        lblphotoselected.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        lblphotoselected.setOpaque(true);
-        add(lblphotoselected, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 510, 190, 20));
-        add(txtlevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 295, 300, -1));
-
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/add-user (1).png"))); // NOI18N
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 200, 190, 170));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 120, 190, 170));
+        add(txtemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 450, 300, -1));
+
+        btnphoto.setBackground(new java.awt.Color(0, 0, 0));
+        btnphoto.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        btnphoto.setForeground(new java.awt.Color(255, 255, 255));
+        btnphoto.setText("Browse..");
+        btnphoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnphotoActionPerformed(evt);
+            }
+        });
+        add(btnphoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 490, 120, -1));
+
+        btnsave.setBackground(new java.awt.Color(0, 0, 0));
+        btnsave.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        btnsave.setForeground(new java.awt.Color(255, 255, 255));
+        btnsave.setText("SAVE");
+        btnsave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsaveActionPerformed(evt);
+            }
+        });
+        add(btnsave, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 340, 90, -1));
         add(txtname, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 300, -1));
+        add(txtlevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 300, -1));
+        add(txtteaminfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 300, -1));
+        add(txtpositiontitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 370, 300, -1));
+        add(txtphoneno, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 410, 300, -1));
+        add(lblphotoselected, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 500, 180, 20));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtempidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtempidActionPerformed
+        // TODO add your handling code here;
+    }//GEN-LAST:event_txtempidActionPerformed
+
+    private void btnfemaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfemaleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnfemaleActionPerformed
+
+    private void btnphotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnphotoActionPerformed
+        // TODO add your handling code here:
+        JFileChooser browseImageFile = new JFileChooser();
+        FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES","png", "jpg", "jpeg");
+        browseImageFile.addChoosableFileFilter(fnef);
+        int showOpenDialogue = browseImageFile.showOpenDialog(null);
+        
+        if (showOpenDialogue == APPROVE_OPTION) {
+            File selectedImageFile = browseImageFile.getSelectedFile();
+            selectedImagePath = selectedImageFile.getAbsolutePath();
+            lblphotoselected.setText(selectedImagePath);
+            
+        }
+    }//GEN-LAST:event_btnphotoActionPerformed
 
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
         // TODO add your handling code here:
-
+        
         String name = txtname.getText();
         String empid = txtempid.getText();
         Date dob = choosedob.getDate();
@@ -316,68 +305,15 @@ public class CreateJPanel extends javax.swing.JPanel {
             //gendergroup.getSelection();
             choosestartdate.setDate(null);
             txtlevel.setText("");
+            txtteaminfo.setText("");
             txtpositiontitle.setText("");
             txtphoneno.setText("");
             txtemail.setText("");
-            txtteaminfo.setText("");
             lblphotoselected.setText("");
 
         }
     }//GEN-LAST:event_btnsaveActionPerformed
-
-    private void txtempidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtempidActionPerformed
-        // TODO add your handling code here;
-    }//GEN-LAST:event_txtempidActionPerformed
-
-    private void txtphonenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtphonenoActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_txtphonenoActionPerformed
-
-    private void btnfemaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfemaleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnfemaleActionPerformed
-
-    private void btnphotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnphotoActionPerformed
-        // TODO add your handling code here:
-        JFileChooser browseImageFile = new JFileChooser();
-        int showOpenDialogue = browseImageFile.showOpenDialog(null);
-        if (showOpenDialogue == APPROVE_OPTION) {
-            File selectedImageFile = browseImageFile.getSelectedFile();
-            selectedImagePath = selectedImageFile.getAbsolutePath();
-            lblphotoselected.setText(selectedImagePath);
-        }
-
-    }//GEN-LAST:event_btnphotoActionPerformed
-
-    private void btnsaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnsaveKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnsaveKeyPressed
-
-    private void btnsaveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnsaveKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnsaveKeyReleased
-    /**/
-
-    private void btnphotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnphotoMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnphotoMouseClicked
-
-    private void txtemailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtemailKeyReleased
-        // TODO add your handling code here:
-        String phoneno = txtphoneno.getText();
-        if(phoneno.matches("^[0-9]*$") || phoneno.length()==10){
-            txtphoneno.setBackground(Color.green);  
-        }else{
-            txtphoneno.setBackground(Color.red); 
-        }
-        
-    }//GEN-LAST:event_txtemailKeyReleased
-
-    private void txtphonenoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtphonenoKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtphonenoKeyReleased
-
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton btnfemale;
     private javax.swing.JRadioButton btnmale;

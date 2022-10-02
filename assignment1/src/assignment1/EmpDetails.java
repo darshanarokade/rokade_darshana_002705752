@@ -35,12 +35,4 @@ public class EmpDetails {
         emp.add(newemp);
         return newemp;
     }
-
-    public Employee upadteEmp() {
-        Employee updateemp = new Employee();
-        emp.add(updateemp);
-        return updateemp;
-    }
-    
-  
 }
