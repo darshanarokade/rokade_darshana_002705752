@@ -252,50 +252,27 @@ public class CreateJPanel extends javax.swing.JPanel {
         
         Date startdate = choosestartdate.getDate();
         String level= txtlevel.getText();
+        String teaminfo = txtteaminfo.getText();
         String positiontitle = txtpositiontitle.getText();
         String phoneno = txtphoneno.getText();
-        
-        /*int length = phoneno.length();
-        char c;
-        c = evt.getKeyChar();
-        
-        if(evt.getKeyChar()>='0' || evt.getKeyChar()<='9')
-        {
-            if (length<10){
-                txtphoneno.setEditable(true);
-            }
-            else{
-                txtphoneno.setEditable(false);
-            }
-        }else
-        {
-            if(evt.getExtendedKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode() == KeyEvent.VK_DELETE){
-                txtphoneno.setEditable(true);
-            }else{
-                txtphoneno.setEditable(false);
-            }
-                
-        }*/
-
-        
         String email = txtemail.getText();
-        // Refer txtnameKeyReleased method for validation
-        
-        
         String photo = lblphotoselected.getText();
-
+        
+// Refer txtnameKeyReleased method for validation
+        
         if (name.equals("")
-                || dob == (null)
                 || empid.equals("")
+                || dob == (null)
+                || ((btnfemale.isSelected() || btnmale.isSelected() || btnother.isSelected()) == false)
                 || startdate == (null)
                 || level.equals("")
+                || teaminfo.equals("")
                 || positiontitle.equals("")
                 || phoneno.equals("")
-                || ((btnfemale.isSelected() || btnmale.isSelected() || btnother.isSelected()) == false)
                 || email.equals("") 
-                || photo == null)
+                || photo.isEmpty())
         {
-            JOptionPane.showMessageDialog(null, "Invalid Entry");
+            JOptionPane.showMessageDialog(null, "Invalid Entry !!! Please Fill all Details.");
         } else {
             
             Employee em = emp.addNewEmp();
@@ -305,6 +282,7 @@ public class CreateJPanel extends javax.swing.JPanel {
             em.setGender(gender);
             em.setStartdate(startdate);
             em.setLevel(level);
+            em.setTeaminfo(teaminfo);
             em.setPositiontitle(positiontitle);
             em.setPhoneno(phoneno);
             em.setEmail(email);
@@ -350,6 +328,8 @@ public class CreateJPanel extends javax.swing.JPanel {
             File selectedImageFile = browseImageFile.getSelectedFile();
             selectedImagePath = selectedImageFile.getAbsolutePath();
             lblphotoselected.setText(selectedImagePath);
+            
+            
         }
         
         
