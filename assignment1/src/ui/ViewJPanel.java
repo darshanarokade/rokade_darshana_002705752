@@ -12,6 +12,7 @@ import assignment1.EmpDetails;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import static javax.swing.JFileChooser.APPROVE_OPTION;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
@@ -36,6 +37,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         this.emp = emp;
 
         populateTable();
+
     }
 
     /*ViewJPanel() {
@@ -55,7 +57,6 @@ public class ViewJPanel extends javax.swing.JPanel {
         tblemp = new javax.swing.JTable();
         javax.swing.JButton btnupdate = new javax.swing.JButton();
         javax.swing.JButton btndelete = new javax.swing.JButton();
-        btnviewemp = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         lblphoto1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -82,6 +83,8 @@ public class ViewJPanel extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         txtsearch = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        javax.swing.JButton btnview = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(153, 255, 204));
         setBorder(new javax.swing.border.MatteBorder(null));
@@ -90,7 +93,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         lblcreate.setFont(new java.awt.Font("Georgia", 3, 24)); // NOI18N
         lblcreate.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\Downloads\\list.png")); // NOI18N
         lblcreate.setText("List of Employees");
-        add(lblcreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 1020, 80));
+        add(lblcreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 1020, 80));
 
         tblemp.setBackground(javax.swing.UIManager.getDefaults().getColor("Objects.Purple"));
         tblemp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -139,7 +142,7 @@ public class ViewJPanel extends javax.swing.JPanel {
                 btnupdateActionPerformed(evt);
             }
         });
-        add(btnupdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 540, 160, -1));
+        add(btnupdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 570, 160, -1));
 
         btndelete.setBackground(new java.awt.Color(255, 255, 153));
         btndelete.setFont(new java.awt.Font("Comic Sans MS", 3, 14)); // NOI18N
@@ -149,21 +152,13 @@ public class ViewJPanel extends javax.swing.JPanel {
                 btndeleteActionPerformed(evt);
             }
         });
-        add(btndelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 590, 160, -1));
-
-        btnviewemp.setBackground(new java.awt.Color(255, 255, 153));
-        btnviewemp.setFont(new java.awt.Font("Comic Sans MS", 3, 14)); // NOI18N
-        btnviewemp.setText("View Employee");
-        btnviewemp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnviewempActionPerformed(evt);
-            }
-        });
-        add(btnviewemp, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 490, 160, -1));
+        add(btndelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 530, 160, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 153, 153));
         jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
 
+        lblphoto1.setBackground(new java.awt.Color(255, 255, 255));
+        lblphoto1.setForeground(new java.awt.Color(255, 255, 255));
         lblphoto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/employee.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Georgia", 3, 18)); // NOI18N
@@ -230,68 +225,61 @@ public class ViewJPanel extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap(89, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(105, 105, 105))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(89, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel4))
-                                .addGap(32, 32, 32)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtname1, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                                    .addComponent(txtempid1)))
-                            .addComponent(lblphoto1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel12))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel4))
+                        .addGap(32, 32, 32)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtteaminfo1)
-                            .addComponent(txtlevel1)
-                            .addComponent(txtpositiontitle1)
-                            .addComponent(txtemail1)
-                            .addComponent(txtphoneno1, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                            .addComponent(txtdob1)
-                            .addComponent(txtstartdate1)
-                            .addComponent(txtgender1))
-                        .addGap(15, 15, 15)))
-                .addGap(68, 68, 68))
+                            .addComponent(txtname1, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                            .addComponent(txtempid1)))
+                    .addComponent(lblphoto1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtteaminfo1)
+                    .addComponent(txtlevel1)
+                    .addComponent(txtpositiontitle1)
+                    .addComponent(txtphoneno1, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                    .addComponent(txtdob1)
+                    .addComponent(txtstartdate1)
+                    .addComponent(txtgender1)
+                    .addComponent(txtemail1))
+                .addGap(83, 83, 83))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(15, 15, 15)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblphoto1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblphoto1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel6))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(txtname1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtname1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(txtempid1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtdob1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -327,7 +315,7 @@ public class ViewJPanel extends javax.swing.JPanel {
                 .addGap(45, 45, 45))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 820, 410));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 820, 410));
         add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 410, -1, -1));
 
         txtsearch.setBackground(new java.awt.Color(255, 255, 153));
@@ -351,32 +339,48 @@ public class ViewJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 3, 14)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/recruitment.png"))); // NOI18N
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 390, 80, 80));
+
+        jButton1.setText("View Employee");
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 140, -1, -1));
+
+        btnview.setBackground(new java.awt.Color(255, 255, 153));
+        btnview.setFont(new java.awt.Font("Comic Sans MS", 3, 14)); // NOI18N
+        btnview.setText("View Employee");
+        btnview.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnviewActionPerformed(evt);
+            }
+        });
+        add(btnview, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 490, 160, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
         // TODO add your handling code here:
-
+         
         int selectedRowIndex = tblemp.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) tblemp.getModel();
-        //Employee selectedEmp = (Employee) model.getValueAt(selectedRowIndex, 0);
+        Employee selectedEmp = (Employee) model.getValueAt(selectedRowIndex, 0);
 
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a record to Update");
-        } else {
-            model.setValueAt(txtname1.getText(), selectedRowIndex, 1);
-            model.setValueAt(txtempid1.getText(), selectedRowIndex, 2);
-            model.setValueAt(txtdob1.getText(), selectedRowIndex, 3);
-            model.setValueAt(txtgender1.getText(), selectedRowIndex, 4);
-            model.setValueAt(txtstartdate1.getText(), selectedRowIndex, 5);
-            model.setValueAt(txtlevel1.getText(), selectedRowIndex, 6);
-            model.setValueAt(txtteaminfo1.getText(), selectedRowIndex, 7);
-            model.setValueAt(txtpositiontitle1.getText(), selectedRowIndex, 8);
-            model.setValueAt(txtphoneno1.getText(), selectedRowIndex, 9);
-            model.setValueAt(txtemail1.getText(), selectedRowIndex, 10);
-            
         }
 
-   
+        if (tblemp.getSelectedRowCount() == 1) {
+
+            model.setValueAt(txtname1.getText(), tblemp.getSelectedRow(),1);
+            model.setValueAt(txtempid1.getText(), tblemp.getSelectedRow(), 2);
+            model.setValueAt(txtdob1.getText(), tblemp.getSelectedRow(), 3);
+            model.setValueAt(txtgender1.getText(), tblemp.getSelectedRow(), 4);
+            model.setValueAt(txtstartdate1.getText(), tblemp.getSelectedRow(), 5);
+            model.setValueAt(txtlevel1.getText(), tblemp.getSelectedRow(), 6);
+            model.setValueAt(txtteaminfo1.getText(),tblemp.getSelectedRow(),7);
+            model.setValueAt(txtpositiontitle1.getText(),tblemp.getSelectedRow(),8);
+            model.setValueAt(txtphoneno1.getText(), tblemp.getSelectedRow(), 9);
+            model.setValueAt(txtemail1.getText(), tblemp.getSelectedRow(), 10);
+
+            JOptionPane.showMessageDialog(this, "Updated Successfully");
+        }
+
     }//GEN-LAST:event_btnupdateActionPerformed
 
     private void btndeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeleteActionPerformed
@@ -410,39 +414,8 @@ public class ViewJPanel extends javax.swing.JPanel {
         txtteaminfo1.setText("");
 
     }//GEN-LAST:event_btndeleteActionPerformed
-
-    private void btnviewempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnviewempActionPerformed
-        // TODO add your handling code here:
-
-        int selectedRowIndex = tblemp.getSelectedRow();
-
-        if (selectedRowIndex < 0) {
-            JOptionPane.showMessageDialog(this, "Please select a row to View Details");
-            return;
-        }
-
-        DefaultTableModel model = (DefaultTableModel) tblemp.getModel();
-        Employee selectedEmp = (Employee) model.getValueAt(selectedRowIndex, 0);
-
-        //lblphoto1 = new JLabel(new ImageIcon(selectedEmp.getPhoto()));
-        //jPanel1.add(lblphoto1);
-        txtname1.setText(selectedEmp.getName());
-        txtempid1.setText(selectedEmp.getEmpid());
-        txtdob1.setText(String.valueOf(selectedEmp.getDob()));
-        txtgender1.setText(String.valueOf(selectedEmp.getGender()));
-        txtstartdate1.setText(String.valueOf(selectedEmp.getStartdate()));
-        txtlevel1.setText(selectedEmp.getLevel());
-        txtteaminfo1.setText(selectedEmp.getTeaminfo());
-        txtpositiontitle1.setText(selectedEmp.getPositiontitle());
-        txtphoneno1.setText(selectedEmp.getPhoneno());
-        txtemail1.setText(selectedEmp.getEmail());
-
-        // to Display the data in Panel1
-        //lblgender1.setText("");
-        //lblphoto1.setText(selectedEmp.getphoto());
-
-    }//GEN-LAST:event_btnviewempActionPerformed
-
+/**/
+    
     private void txtsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtsearchActionPerformed
@@ -453,8 +426,6 @@ public class ViewJPanel extends javax.swing.JPanel {
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
         tblemp.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(txtsearch.getText().trim()));
-
-        //filter(query);
     }//GEN-LAST:event_txtsearchKeyReleased
 
     private void txtsearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsearchKeyPressed
@@ -471,28 +442,36 @@ public class ViewJPanel extends javax.swing.JPanel {
 
     private void tblempMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblempMouseClicked
         // TODO add your handling code here:
-        /*
-        DefaultTableModel model = (DefaultTableModel) tblemp.getModel();
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
-        
-        int selectedRowIndex = tblemp.getSelectedRow();
-        
-        txtname1.setText(model.getValueAt(selectedRowIndex,0).toString());
-        txtempid1.setText(model.getValueAt(selectedRowIndex,1).toString());
-        txtdob1.setText(model.getValueAt(selectedRowIndex,2).toString());
-        txtgender1.setText(model.getValueAt(selectedRowIndex,3).toString());
-        txtpositiontitle1.setText(model.getValueAt(selectedRowIndex,4).toString());
-        txtstartdate1.setText(model.getValueAt(selectedRowIndex,5).toString());
-        txtlevel1.setText(model.getValueAt(selectedRowIndex,6).toString());
-        txtteaminfo1.setText(model.getValueAt(selectedRowIndex,7).toString());
-        txtpositiontitle1.setText(model.getValueAt(selectedRowIndex,8).toString());
-        txtphoneno1.setText(model.getValueAt(selectedRowIndex,9).toString());
-        txtemail1.setText(model.getValueAt(selectedRowIndex,10).toString());
-        
-        */
     }//GEN-LAST:event_tblempMouseClicked
 
-    
+    private void btnviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnviewActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = tblemp.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to View Details");
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) tblemp.getModel();
+        Employee selectedEmp = (Employee) model.getValueAt(selectedRowIndex, 0);
+
+        
+        txtname1.setText(selectedEmp.getName());
+        txtempid1.setText(selectedEmp.getEmpid());
+        txtdob1.setText(String.valueOf(selectedEmp.getDob()));
+        txtgender1.setText(String.valueOf(selectedEmp.getGender()));
+        txtstartdate1.setText(String.valueOf(selectedEmp.getStartdate()));
+        txtlevel1.setText(selectedEmp.getLevel());
+        txtteaminfo1.setText(selectedEmp.getTeaminfo());
+        txtpositiontitle1.setText(selectedEmp.getPositiontitle());
+        txtphoneno1.setText(selectedEmp.getPhoneno());
+        txtemail1.setText(selectedEmp.getEmail());
+        lblphoto1 = new JLabel(new ImageIcon(selectedEmp.getPhoto()));
+        jPanel1.add(lblphoto1);
+        
+    }//GEN-LAST:event_btnviewActionPerformed
+
     public void populateTable() {
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         DefaultTableModel model = (DefaultTableModel) tblemp.getModel();
@@ -514,12 +493,11 @@ public class ViewJPanel extends javax.swing.JPanel {
             row[10] = e.getEmail();
 
             model.addRow(row);
-
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnviewemp;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
