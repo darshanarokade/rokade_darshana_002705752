@@ -98,13 +98,24 @@ public class ViewJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Name", "Employee ID", "Date Of Birth", "Gender", "Start Date", "Level", "Team Info", "Position Title", "Phone no", "Email"
+                "Name", "Employee ID", "Date Of Birth", "Gender", "Start Date", "Level", "Team Info", "Position Title", "Phone no", "Email", "Image Path"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, true, true, true, true, true, true, true, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblemp.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblemp);
+        if (tblemp.getColumnModel().getColumnCount() > 0) {
+            tblemp.getColumnModel().getColumn(10).setResizable(false);
+        }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 1180, 178));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 1030, 178));
 
         btnupdate.setBackground(new java.awt.Color(255, 255, 153));
         btnupdate.setFont(new java.awt.Font("Comic Sans MS", 3, 14)); // NOI18N
@@ -149,7 +160,7 @@ public class ViewJPanel extends javax.swing.JPanel {
 
         lblteaminfo1.setText("teaminfo");
 
-        lbldob1.setText("dob1");
+        lbldob1.setText("dob");
 
         lbllevel1.setText("level1");
 
@@ -328,15 +339,12 @@ public class ViewJPanel extends javax.swing.JPanel {
     private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
         // TODO add your handling code here:
         
-        System.out.println("Update button pressed");
         int selectedRowIndex = tblemp.getSelectedRow();
         
         if (selectedRowIndex<0){
             JOptionPane.showMessageDialog(this, "Please select a record to Update");
            
         }
-        
-        
         
     }//GEN-LAST:event_btnupdateActionPerformed
 
@@ -398,7 +406,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         
         lblname1.setText(selectedEmp.getName());
         lblempid1.setText(selectedEmp.getEmpid());
-        lbldob1.setText(String.valueOf(selectedEmp.getDate()));
+        lbldob1.setText(String.valueOf(selectedEmp.getDob()));
         lblgender1.setText(String.valueOf(selectedEmp.getGender()));
         lblstartdate1.setText(String.valueOf(selectedEmp.getStartdate()));
         lbllevel1.setText(selectedEmp.getLevel());
@@ -435,6 +443,30 @@ public class ViewJPanel extends javax.swing.JPanel {
         tr.setRowFilter(RowFilter.regexFilter(txtsearch.getText().trim()));
     }//GEN-LAST:event_txtsearchKeyPressed
 
+    
+    private void populateTable() {
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        DefaultTableModel model = (DefaultTableModel) tblemp.getModel();
+        model.setRowCount(0);
+        
+        for (Employee e : emp.getEmp()){
+            Object[] row = new Object[11];
+            row[0]=e;
+            row[1]=e.getName();
+            row[2]=e.getEmpid();
+            row[3]=e.getDob();
+            row[4]=e.getGender();
+            row[5]=e.getStartdate();
+            row[6]=e.getLevel();
+            row[7]=e.getTeaminfo();
+            row[8]=e.getPositiontitle();
+            row[9]=e.getPhoneno();
+            row[10]=e.getEmail();
+
+            model.addRow(row);
+            
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnviewemp;
@@ -468,29 +500,7 @@ public class ViewJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtsearch;
     // End of variables declaration//GEN-END:variables
 
-    private void populateTable() {
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        DefaultTableModel model = (DefaultTableModel) tblemp.getModel();
-        model.setRowCount(0);
-        
-        for (Employee e : emp.getEmp()){
-            Object[] row = new Object[15];
-            row[0]=e;
-            row[1]=e.getName();
-            row[2]=e.getEmpid();
-            row[3]=e.getDob();
-            row[4]=e.getGender();
-            row[5]=e.getStartdate();
-            row[6]=e.getLevel();
-            row[7]=e.getTeaminfo();
-            row[8]=e.getPositiontitle();
-            row[9]=e.getPhoneno();
-            row[10]=e.getEmail();
-
-            model.addRow(row);
-            
-        }
-    }
+    
    
    
 }
