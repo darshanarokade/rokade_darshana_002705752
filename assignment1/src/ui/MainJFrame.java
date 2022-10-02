@@ -24,7 +24,6 @@ public class MainJFrame extends javax.swing.JFrame {
         
         emp = new EmpDetails();
  
-      
     }
    
     @SuppressWarnings("unchecked")
