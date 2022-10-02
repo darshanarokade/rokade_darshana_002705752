@@ -3,11 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package ui;
+
 import static javax.swing.JFileChooser.APPROVE_OPTION;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.filechooser.FileFilter;
 import assignment1.EmpDetails;
 import assignment1.Employee;
+import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JFileChooser;
 import java.awt.event.KeyEvent;
@@ -22,7 +24,6 @@ import javax.swing.AbstractButton;
 import java.io.File;
 import java.util.Date;
 
-
 /**
  *
  * @author HP
@@ -33,14 +34,11 @@ public class CreateJPanel extends javax.swing.JPanel {
      * Creates new form CreateJPanel
      *
      */
-    
-    
     EmpDetails emp;
     String selectedImagePath = "";
 
     public CreateJPanel(EmpDetails emp) {
         initComponents();
-        
         this.emp = emp;
 
     }
@@ -175,7 +173,18 @@ public class CreateJPanel extends javax.swing.JPanel {
                 txtphonenoActionPerformed(evt);
             }
         });
+        txtphoneno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtphonenoKeyReleased(evt);
+            }
+        });
         add(txtphoneno, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 415, 300, -1));
+
+        txtemail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtemailKeyReleased(evt);
+            }
+        });
         add(txtemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 460, 300, -1));
 
         btnphoto.setBackground(new java.awt.Color(0, 0, 0));
@@ -231,11 +240,23 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
         // TODO add your handling code here:
-        
+
         String name = txtname.getText();
         String empid = txtempid.getText();
         Date dob = choosedob.getDate();
         String gender = "";
+        Date startdate = choosestartdate.getDate();
+        String level = txtlevel.getText();
+        String teaminfo = txtteaminfo.getText();
+        String positiontitle = txtpositiontitle.getText();
+        String phoneno = txtphoneno.getText();
+        String email = txtemail.getText();
+        String photo = lblphotoselected.getText();
+        
+        ButtonGroup group = new ButtonGroup();
+        group.add(btnfemale);
+        group.add(btnmale);
+        group.add(btnother);
         
         if (btnfemale.isSelected()) {
             gender = "Female";
@@ -244,22 +265,19 @@ public class CreateJPanel extends javax.swing.JPanel {
         } else if (btnother.isSelected()) {
             gender = "Other";
         }
+
+        /*
+        if (!(Pattern.matches("^[a-zA-Z0-9]+[@]{1}+[a-zA-Z0-9]+[.]{1}+[a-zA-Z0-9]+$", txtemail.getText()))) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid email", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+         
         
-        ButtonGroup group = new ButtonGroup();
-        group.add(btnfemale);
-        group.add(btnmale);
-        group.add(btnother);
-        
-        Date startdate = choosestartdate.getDate();
-        String level= txtlevel.getText();
-        String teaminfo = txtteaminfo.getText();
-        String positiontitle = txtpositiontitle.getText();
-        String phoneno = txtphoneno.getText();
-        String email = txtemail.getText();
-        String photo = lblphotoselected.getText();
+        if(phoneno.matches("^[0-9]*$") || phoneno.length()==10){
+            
+        }
+        */
         
 // Refer txtnameKeyReleased method for validation
-        
         if (name.equals("")
                 || empid.equals("")
                 || dob == (null)
@@ -269,12 +287,13 @@ public class CreateJPanel extends javax.swing.JPanel {
                 || teaminfo.equals("")
                 || positiontitle.equals("")
                 || phoneno.equals("")
-                || email.equals("") 
-                || photo.isEmpty())
+                || photo.isEmpty()
+                ||(!(Pattern.matches("^[a-zA-Z0-9]+[@]{1}+[a-zA-Z0-9]+[.]{1}+[a-zA-Z0-9]+$", txtemail.getText())))) 
         {
-            JOptionPane.showMessageDialog(null, "Invalid Entry !!! Please Fill all Details.");
-        } else {
-            
+            JOptionPane.showMessageDialog(null, "Invalid Entry !!! ");
+        } 
+        else
+        {
             Employee em = emp.addNewEmp();
             em.setName(name);
             em.setEmpid(empid);
@@ -286,7 +305,7 @@ public class CreateJPanel extends javax.swing.JPanel {
             em.setPositiontitle(positiontitle);
             em.setPhoneno(phoneno);
             em.setEmail(email);
-            //em.setPhoto(photo);
+            em.setPhoto(photo);
 
             JOptionPane.showMessageDialog(this, "New Employee Added");
 
@@ -294,6 +313,7 @@ public class CreateJPanel extends javax.swing.JPanel {
             txtempid.setText("");
             choosedob.setDate(null);
             gendergroup.clearSelection();
+            //gendergroup.getSelection();
             choosestartdate.setDate(null);
             txtlevel.setText("");
             txtpositiontitle.setText("");
@@ -301,14 +321,13 @@ public class CreateJPanel extends javax.swing.JPanel {
             txtemail.setText("");
             txtteaminfo.setText("");
             lblphotoselected.setText("");
-            
+
         }
     }//GEN-LAST:event_btnsaveActionPerformed
 
     private void txtempidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtempidActionPerformed
         // TODO add your handling code here;
     }//GEN-LAST:event_txtempidActionPerformed
-
 
     private void txtphonenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtphonenoActionPerformed
         // TODO add your handling code here:
@@ -323,16 +342,12 @@ public class CreateJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         JFileChooser browseImageFile = new JFileChooser();
         int showOpenDialogue = browseImageFile.showOpenDialog(null);
-        if(showOpenDialogue == APPROVE_OPTION)
-        {
+        if (showOpenDialogue == APPROVE_OPTION) {
             File selectedImageFile = browseImageFile.getSelectedFile();
             selectedImagePath = selectedImageFile.getAbsolutePath();
             lblphotoselected.setText(selectedImagePath);
-            
-            
         }
-        
-        
+
     }//GEN-LAST:event_btnphotoActionPerformed
 
     private void btnsaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnsaveKeyPressed
@@ -342,12 +357,26 @@ public class CreateJPanel extends javax.swing.JPanel {
     private void btnsaveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnsaveKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_btnsaveKeyReleased
-/**/
+    /**/
 
     private void btnphotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnphotoMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnphotoMouseClicked
 
+    private void txtemailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtemailKeyReleased
+        // TODO add your handling code here:
+        String phoneno = txtphoneno.getText();
+        if(phoneno.matches("^[0-9]*$") || phoneno.length()==10){
+            txtphoneno.setBackground(Color.green);  
+        }else{
+            txtphoneno.setBackground(Color.red); 
+        }
+        
+    }//GEN-LAST:event_txtemailKeyReleased
+
+    private void txtphonenoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtphonenoKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtphonenoKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton btnfemale;

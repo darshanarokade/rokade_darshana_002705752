@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class EmpDetails {
 
-    private ArrayList<Employee> emp;
+    public ArrayList<Employee> emp;
 
     public EmpDetails() {
         this.emp = new ArrayList<>();
@@ -36,4 +36,11 @@ public class EmpDetails {
         return newemp;
     }
 
+    public Employee upadteEmp() {
+        Employee updateemp = new Employee();
+        emp.add(updateemp);
+        return updateemp;
+    }
+    
+  
 }
