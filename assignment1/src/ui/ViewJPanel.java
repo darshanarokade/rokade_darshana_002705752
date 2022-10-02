@@ -98,12 +98,19 @@ public class ViewJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Name", "Employee ID", "Date Of Birth", "Gender", "Start Date", "Level", "Team Info", "Position Title", "Phone no", "Email", "Image Path"
+                "", "Name", "Employee ID", "Date Of Birth", "Gender", "Start Date", "Level", "Team Info", "Position Title", "Phone no", "Email"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                true, true, true, true, true, true, true, true, true, true, false
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true, true, true, true, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -112,7 +119,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         tblemp.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblemp);
         if (tblemp.getColumnModel().getColumnCount() > 0) {
-            tblemp.getColumnModel().getColumn(10).setResizable(false);
+            tblemp.getColumnModel().getColumn(6).setResizable(false);
         }
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 1030, 178));
@@ -162,7 +169,7 @@ public class ViewJPanel extends javax.swing.JPanel {
 
         lbldob1.setText("dob");
 
-        lbllevel1.setText("level1");
+        lbllevel1.setText("level");
 
         lblstartdate1.setText("startdate");
 
@@ -291,26 +298,26 @@ public class ViewJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lbllevel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(lblteaminfo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblteaminfo1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(lblpositiontitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblpositiontitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11))
                         .addGap(9, 9, 9)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(lblemail1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(lblphoneno1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblphoneno1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12))
                         .addGap(23, 23, 23)))
                 .addGap(47, 47, 47))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 820, 410));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 820, 410));
         add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 410, -1, -1));
 
         txtsearch.setBackground(new java.awt.Color(255, 255, 153));
@@ -339,18 +346,21 @@ public class ViewJPanel extends javax.swing.JPanel {
     private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
         // TODO add your handling code here:
         
+        
         int selectedRowIndex = tblemp.getSelectedRow();
         
         if (selectedRowIndex<0){
             JOptionPane.showMessageDialog(this, "Please select a record to Update");
-           
+            
         }
-        
+       
+        //emp.upadteEmp(selectedEmp);
+                
     }//GEN-LAST:event_btnupdateActionPerformed
 
     private void btndeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeleteActionPerformed
         // TODO add your handling code here:
-        System.out.println("Delete button pressed");
+        
         int selectedRowIndex = tblemp.getSelectedRow();
         
         if (selectedRowIndex<0){
@@ -365,7 +375,8 @@ public class ViewJPanel extends javax.swing.JPanel {
         
         JOptionPane.showMessageDialog(this, "Employee deleted");
         
-        lblgender1.setText("");
+        populateTable();
+        
         lblname1.setText("");
         lblempid1.setText("");
         lbldob1.setText("");
@@ -377,16 +388,8 @@ public class ViewJPanel extends javax.swing.JPanel {
         lblemail1.setText("");
         lblteaminfo1.setText("");
         
-        populateTable();
-        
     }//GEN-LAST:event_btndeleteActionPerformed
 
-    /*
-    public void filter(String query){
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(tblemp);
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(emp)
-    }
-*/
     private void btnviewempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnviewempActionPerformed
         // TODO add your handling code here:
         
@@ -399,9 +402,8 @@ public class ViewJPanel extends javax.swing.JPanel {
         
         DefaultTableModel model = (DefaultTableModel) tblemp.getModel();
         Employee selectedEmp = (Employee) model.getValueAt(selectedRowIndex,0);
-        //lblphoto1 = new JLabel(new ImageIcon(selectedEmp.getPhoto()));
- 
         
+        //lblphoto1 = new JLabel(new ImageIcon(selectedEmp.getPhoto()));
         //jPanel1.add(lblphoto1);
         
         lblname1.setText(selectedEmp.getName());
@@ -444,13 +446,14 @@ public class ViewJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txtsearchKeyPressed
 
     
-    private void populateTable() {
+    public void populateTable() {
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         DefaultTableModel model = (DefaultTableModel) tblemp.getModel();
         model.setRowCount(0);
         
         for (Employee e : emp.getEmp()){
             Object[] row = new Object[11];
+    
             row[0]=e;
             row[1]=e.getName();
             row[2]=e.getEmpid();
@@ -462,7 +465,7 @@ public class ViewJPanel extends javax.swing.JPanel {
             row[8]=e.getPositiontitle();
             row[9]=e.getPhoneno();
             row[10]=e.getEmail();
-
+           
             model.addRow(row);
             
         }
@@ -500,9 +503,6 @@ public class ViewJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtsearch;
     // End of variables declaration//GEN-END:variables
 
-    
-   
-   
 }
     
 
