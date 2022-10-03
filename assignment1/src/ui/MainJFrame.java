@@ -38,6 +38,7 @@ public class MainJFrame extends javax.swing.JFrame {
         javax.swing.JPanel workarea = new javax.swing.JPanel();
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1000, 1500));
@@ -70,36 +71,6 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/employee (1).png"))); // NOI18N
 
-        javax.swing.GroupLayout controlpanelLayout = new javax.swing.GroupLayout(controlpanel);
-        controlpanel.setLayout(controlpanelLayout);
-        controlpanelLayout.setHorizontalGroup(
-            controlpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(controlpanelLayout.createSequentialGroup()
-                .addGroup(controlpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(controlpanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(controlpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnview, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btncreate)))
-                    .addGroup(controlpanelLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        controlpanelLayout.setVerticalGroup(
-            controlpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(controlpanelLayout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(btncreate)
-                .addGap(51, 51, 51)
-                .addComponent(btnview)
-                .addContainerGap(682, Short.MAX_VALUE))
-        );
-
-        splitpane.setLeftComponent(controlpanel);
-
         workarea.setBackground(new java.awt.Color(255, 255, 204));
         workarea.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         workarea.setFont(new java.awt.Font("Gabriola", 1, 14)); // NOI18N
@@ -114,9 +85,55 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Personal-Crowd-Silhouettes-Human-Group-Of-People-2045498.jpg"))); // NOI18N
         jLabel2.setToolTipText("");
         jLabel2.setMaximumSize(new java.awt.Dimension(1500, 1500));
-        workarea.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 500, 520));
+        workarea.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 500, 520));
 
-        splitpane.setRightComponent(workarea);
+        jTextField1.setBackground(new java.awt.Color(255, 153, 102));
+        jTextField1.setFont(new java.awt.Font("Georgia", 3, 24)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(0, 0, 204));
+        jTextField1.setText("We Nourish Talent......");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        workarea.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 590, 350, 40));
+
+        javax.swing.GroupLayout controlpanelLayout = new javax.swing.GroupLayout(controlpanel);
+        controlpanel.setLayout(controlpanelLayout);
+        controlpanelLayout.setHorizontalGroup(
+            controlpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(controlpanelLayout.createSequentialGroup()
+                .addGroup(controlpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(controlpanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(controlpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnview, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btncreate)))
+                    .addGroup(controlpanelLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(workarea, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        controlpanelLayout.setVerticalGroup(
+            controlpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(controlpanelLayout.createSequentialGroup()
+                .addGroup(controlpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(controlpanelLayout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(btncreate)
+                        .addGap(51, 51, 51)
+                        .addComponent(btnview))
+                    .addGroup(controlpanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(workarea, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        splitpane.setLeftComponent(controlpanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -124,12 +141,12 @@ public class MainJFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(splitpane, javax.swing.GroupLayout.DEFAULT_SIZE, 1224, Short.MAX_VALUE)
+                .addComponent(splitpane)
                 .addGap(1147, 1147, 1147))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(splitpane)
+            .addComponent(splitpane, javax.swing.GroupLayout.DEFAULT_SIZE, 1016, Short.MAX_VALUE)
         );
 
         pack();
@@ -153,6 +170,10 @@ public class MainJFrame extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosing
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,6 +217,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel controlpanel;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JSplitPane splitpane;
     // End of variables declaration//GEN-END:variables
 
